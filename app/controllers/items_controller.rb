@@ -9,9 +9,19 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
   def create
-    @item = Item.new(params[:item])
+    @item = Item.new(params[:item_params])
     @item.save
+    # redirect_to items_path(@item)
+    redirect_to "/items#{@item.id}"
   end
+  def edit
+    @item = Item.find(params[:id])
+  end
+  def update
+    @item = Item.find(params[:id])
+    @item.update_attributes(item_params)
+    @item.save
+    redirect_to "/items/#{@item.id}"
 
   private
 
@@ -23,4 +33,5 @@ class ItemsController < ApplicationController
       :seller_id,
       :mail,
       :image_url)
+  end
 end
