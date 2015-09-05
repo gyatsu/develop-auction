@@ -1,9 +1,30 @@
 <h1>新規登録フォーム</h1>
 <%= form_for @item do |f| %>
 
+<p>
 <%= f.label :name %>
 <%= f.text_field :name %>
+</p>
+
+<%= f.label :details %>
+<%= f.text_field :details %>
+<br>
+
+<%= f.label :price %>
+<%= f.number_field :price %>
+<br>
+
+<%= f.label :seller_id %>
+<%= f.number_field :seller_id %>
+<br>
+
+<%= f.label :mail %>
+<%= f.text_field :mail %>
+<br>
+
+<%= f.label :image_url %>
+<%= f.text_field :image_url %>
+<br>
 
 <%= f.submit %>
-
 <% end %>
