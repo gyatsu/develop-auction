@@ -9,10 +9,10 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
   def create
-    @item = Item.new(params[:item_params])
+    @item = Item.new(params[:id])
     @item.save
     # redirect_to items_path(@item)
-    redirect_to "/items#{@item.id}"
+    redirect_to "/items/#{@item.id}"
   end
   def edit
     @item = Item.find(params[:id])
@@ -22,9 +22,15 @@ class ItemsController < ApplicationController
     @item.update_attributes(item_params)
     @item.save
     redirect_to "/items/#{@item.id}"
+  end
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    @item.save
+    redirect_to "/items"
+  end
 
   private
-
   def item_params
     params.require(:item).permit(
       :name,
